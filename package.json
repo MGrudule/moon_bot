@@ -1,7 +1,7 @@
 {
   "name": "moonbot",
   "version": "1.0.0",
-  "description": "A Telegram bot to track moon phases built on slimbot framework",
+  "description": "A Telegram bot to track moon phases",
   "main": "index.js",
   "scripts": {
     "test": "tothemoon"
@@ -23,6 +23,9 @@
   "homepage": "https://github.com/MGrudule/moon_bot#readme",
   "dependencies": {
     "axios": "^0.19.0",
+    "botgram": "^2.2.0",
+    "lune": "^0.4.0",
+    "moment": "^2.24.0",
     "slimbot": "^4.4.0"
   }
 }
