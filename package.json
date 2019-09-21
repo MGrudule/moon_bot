@@ -1,0 +1,28 @@
+{
+  "name": "moonbot",
+  "version": "1.0.0",
+  "description": "A Telegram bot to track moon phases built on slimbot framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "tothemoon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MGrudule/moon_bot.git"
+  },
+  "keywords": [
+    "Telegram",
+    "bot",
+    "node.js"
+  ],
+  "author": "MGrudule",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MGrudule/moon_bot/issues"
+  },
+  "homepage": "https://github.com/MGrudule/moon_bot#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "slimbot": "^4.4.0"
+  }
+}
