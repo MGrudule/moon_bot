@@ -1,12 +1,14 @@
 const botgram = require("botgram"),
   bot = botgram(process.env["TELEGRAM_BOT_TOKEN"]),
   lune = require("lune"),
-  moment = require("moment");
+  moment = require("moment"),
+  lunation = require("./lunation");
 
 let shouts = [
   "Hi from the moon \u{1F31D}",
   "https://www.youtube.com/watch?v=FlpstXNjImY",
   "Some say I'm made of cheese \u{1F9C0}",
+  "https://www.youtube.com/watch?v=T0qagA4_eVQ",
   "The dark side of the moon is a myth. \u{1F31A} \u{E107}"
 ];
 
@@ -19,15 +21,20 @@ bot.command("fullmoon", (message, reply) => {
   reply.html(
     `Hello ${message.from.firstname}, the full moon ${prefix}  ${moment(
       fullMoon
-    ).fromNow()} \u{1F315}`
+    ).fromNow()} \u{1F315} <i>on ${moment(fullMoon).format("dddd, MMM Do")}</i>`
   );
 });
 
 bot.command("newmoon", (message, reply) => {
   let newMoon = lune.phase_hunt(message.date)
     .nextnew_date;
+
   reply.html(
-    `The next lunar cycle starts in ${moment(newMoon).fromNow()} \u{1F311}`
+    `<strong>The ${lunation.calcLunation(newMoon)} lunar cycle starts ${moment(
+      newMoon
+    ).fromNow()}</strong> \u{1F311} <i>on ${moment(newMoon).format(
+      "dddd, MMM Do"
+    )}</i>`
   );
 });
 
@@ -46,6 +53,17 @@ bot.command("age", (message, reply) =>
       .age.toFixed(1)} days old \u{1F318}`
   )
 );
+bot.command("today", (message, reply) => {
+  let age = lune.phase(message.date)
+    .age.toFixed(0);
+  console.log("hello" + age);
+  reply.html(
+    `\u{1F4DC} ${lunation.ordinal(age)} of the ${lunation.calcLunation(
+      message.date,
+      true
+    )} lunation`
+  );
+});
 
 /******* THE MESSAGES***** */
 bot.text(function(msg, reply, next) {
