@@ -1,11 +1,21 @@
-require('dotenv')
-  .config()
+require("dotenv")
+  .config();
 
-const botgram = require("botgram"),
-  bot = botgram(process.env.TELEGRAM_BOT_TOKEN),
+const HttpsProxyAgent = require("https-proxy-agent"),
+  myAgent = new HttpsProxyAgent({
+    host: "0.0.0.0",
+    port: 2106,
+    keepAlive: true,
+    maxFreeSockets: 5
+  }),
+  botgram = require("botgram"),
+  bot = botgram(process.env.TELEGRAM_BOT_TOKEN, {
+    agent: myAgent
+  }),
   lune = require("lune"),
   moment = require("moment"),
   lunation = require("./scripts/lunation");
+
 let shouts = [
   "Hi from the moon \u{1F31D}",
   "https://www.youtube.com/watch?v=FlpstXNjImY",
