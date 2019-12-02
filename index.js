@@ -1,9 +1,11 @@
+require('dotenv')
+  .config()
+
 const botgram = require("botgram"),
-  bot = botgram(process.env["TELEGRAM_BOT_TOKEN"]),
+  bot = botgram(process.env.TELEGRAM_BOT_TOKEN),
   lune = require("lune"),
   moment = require("moment"),
-  lunation = require("./lunation");
-
+  lunation = require("./scripts/lunation");
 let shouts = [
   "Hi from the moon \u{1F31D}",
   "https://www.youtube.com/watch?v=FlpstXNjImY",
@@ -30,7 +32,10 @@ bot.command("newmoon", (message, reply) => {
     .nextnew_date;
 
   reply.html(
-    `<strong>The ${lunation.calcLunation(newMoon)} lunar cycle starts ${moment(
+    `<strong>The ${lunation.calcLunation(
+      newMoon,
+      true
+    )} lunar cycle starts ${moment(
       newMoon
     ).fromNow()}</strong> \u{1F311} <i>on ${moment(newMoon).format(
       "dddd, MMM Do"
