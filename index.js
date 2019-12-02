@@ -1,17 +1,8 @@
 require("dotenv")
   .config();
 
-const HttpsProxyAgent = require("https-proxy-agent"),
-  myAgent = new HttpsProxyAgent({
-    host: "0.0.0.0",
-    port: 2106,
-    keepAlive: true,
-    maxFreeSockets: 5
-  }),
-  botgram = require("botgram"),
-  bot = botgram(process.env.TELEGRAM_BOT_TOKEN, {
-    agent: myAgent
-  }),
+const botgram = require("botgram"),
+  bot = botgram(process.env.TELEGRAM_BOT_TOKEN),
   lune = require("lune"),
   moment = require("moment"),
   lunation = require("./scripts/lunation");
