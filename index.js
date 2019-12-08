@@ -33,14 +33,14 @@ bot.command("newmoon", (message, reply) => {
     .nextnew_date;
 
   reply.html(
-    `<strong>The ${lunation.calcLunation(
+    `The ${lunation.calcLunation(
       newMoon,
       true
     )} lunar cycle starts ${moment(
       newMoon
-    ).fromNow()}</strong> \u{1F311} <i>on ${moment(newMoon).format(
+    ).fromNow()} \u{1F311} <i><strong> on ${moment(newMoon).format(
       "dddd, MMM Do"
-    )}</i>`
+    )}</i></strong>`
   );
 });
 
